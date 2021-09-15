@@ -7,16 +7,17 @@ data "aws_eks_cluster_auth" "cluster" {
 }
 
 locals {
-  environment  = var.environment
-  project      = var.project
-  cluster_name = var.cluster_name
-  domain       = ["${local.cluster_name}.${var.domain_name}"]
+  environment        = var.environment
+  project            = var.project
+  cluster_name       = var.cluster_name
+  domain             = ["${local.cluster_name}.${var.domain_name}"]
+  availability_zones = var.availability_zones
 }
 
 module "network" {
   source = "github.com/provectus/sak-vpc"
 
-  availability_zones = var.availability_zones
+  availability_zones = local.availability_zones
   environment        = local.environment
   project            = local.project
   cluster_name       = local.cluster_name
