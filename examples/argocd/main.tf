@@ -11,7 +11,7 @@ locals {
   project            = var.project
   cluster_name       = var.cluster_name
   domain             = ["${local.cluster_name}.${var.domain_name}"]
-  availability_zones = var.availability_zones
+  availability_zones  = var.availability_zones
 }
 
 module "network" {
